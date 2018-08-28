@@ -157,6 +157,12 @@
                selectByExampleQueryId="false">
         </table>
 
+        <table tableName="t_cert" domainObjectName="TCert"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
         <table tableName="t_advertisement" domainObjectName="TAdvertisement"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"

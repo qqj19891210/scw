@@ -20,6 +20,7 @@
     <mvc:resources mapping="/fonts/**" location="/WEB-INF/static/fonts/" cache-period="31536000"/>
     <mvc:resources mapping="/script/**" location="/WEB-INF/static/script/" cache-period="31536000"/>
     <mvc:resources mapping="/ztree/**" location="/WEB-INF/static/ztree/" cache-period="31536000"/>
+    <mvc:resources mapping="/jquery/**" location="/WEB-INF/static/jquery/" cache-period="31536000"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/views/"

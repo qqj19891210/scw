@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>hehe</title>
+    <title>尚筹网主页</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/bootstrap/bootstrap.min.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/index.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css" />"/>
@@ -18,8 +18,8 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse" style="float:right;">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.html">登录</a></li>
-                        <li><a href="reg.html">注册</a></li>
+                        <li><a href="<c:url value="/login"/>">登录</a></li>
+                        <li><a href="<c:url value="/regist"/>">注册</a></li>
                     </ul>
                 </div>
             </div>

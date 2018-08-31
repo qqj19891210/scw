@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>登录页面</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/bootstrap/bootstrap.min.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>"/>
+    <title>用户登录</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/bootstrap/bootstrap.min.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>">
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -17,21 +17,24 @@
 </nav>
 
 <div class="container">
-
-    <form class="form-signin" role="form">
+    <form id="loginForm" class="form-signin" role="form">
         <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i> 用户登录</h2>
         <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control" id="inputSuccess4" placeholder="请输入登录账号" autofocus>
+            <input type="text" class="form-control" id="loginacct_input" name="loginacct" placeholder="请输入登录账号"
+                   autofocus>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <div class="errorClass" id="loginacct_span"></div>
         </div>
         <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control" id="inputSuccess4" placeholder="请输入登录密码" style="margin-top:10px;">
+            <input type="password" class="form-control" id="userpswd_input" name="userpswd" placeholder="请输入登录密码"
+                   style="margin-top:10px;">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <div class="errorClass" id="userpswd_span"></div>
         </div>
         <div class="form-group has-success has-feedback">
             <select class="form-control">
                 <option value="member">会员</option>
-                <option value="user">管理</option>
+                <option value="manager">管理</option>
             </select>
         </div>
         <div class="checkbox">
@@ -43,14 +46,18 @@
                 忘记密码
             </label>
             <label style="float:right">
-                <a href="<c:url value="/permission/user/regist"/>">我要注册</a>
+                <a href="reg.html">我要注册</a>
             </label>
         </div>
-        <a class="btn btn-lg btn-success btn-block" onclick="dologin()"> 登录</a>
+        <a class="btn btn-lg btn-success btn-block" id="login"> 登录</a>
+        <a class="btn btn-lg btn-success btn-danger" id="logout">退出</a>
     </form>
 </div>
-<script type="text/javascript" src="<c:url value="/jquery/jquery-3.3.1.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/jquery/jquery-3.3.1.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/bootstrap/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/jquery/jquery.validate.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/jquery/jquery.metadata.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/jquery/messages_zh.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
 </body>
 </html>

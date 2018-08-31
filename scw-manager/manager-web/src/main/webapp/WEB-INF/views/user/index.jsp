@@ -18,8 +18,8 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse" style="float:right;">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="<c:url value="/login"/>">登录</a></li>
-                        <li><a href="<c:url value="/regist"/>">注册</a></li>
+                        <li><a href="<c:url value="/permission/user/login"/>">登录</a></li>
+                        <li><a href="<c:url value="/permission/user/regist"/>">注册</a></li>
                     </ul>
                 </div>
             </div>

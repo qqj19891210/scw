@@ -4,7 +4,10 @@ import com.smart.project.MyStringUtils;
 import com.smart.scw.manager.bean.TUser;
 import com.smart.scw.manager.dao.TUserMapper;
 import com.smart.scw.manager.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -32,7 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> registCheck(BindingResult bindingResult, Map<String, Object> map) {
+    public Map<String, Object> check(BindingResult bindingResult, Map<String, Object> map) {
         List<FieldError> errors = bindingResult.getFieldErrors();
         for (FieldError error : errors) {
             map.put(error.getField(), error.getDefaultMessage());
@@ -41,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addRegist(TUser user) {
+    public void addRegist(TUser user) {
         String password=user.getUserpswd();
         String salt = UUID.randomUUID().toString().replaceAll("-","");
         SimpleHash simpleHash=new SimpleHash("MD5",password,salt,1);
@@ -53,14 +56,20 @@ public class UserServiceImpl implements UserService {
         user.setUsername(user.getLoginacct());
         //创建时间默认是String类型
         user.setCreatetime(MyStringUtils.formatDate(new Date()));
-        int i=0;
-        try{
-            i=tUserMapper.insertTUser(user);
-        }catch(Exception e){
-            //添加失败的原因就是用户重复
-            return false;
-        }
-        return i==1;
+        tUserMapper.insertTUser(user);
+    }
+
+    @Override
+    public boolean isAuthenticated(TUser user) {
+        Subject subject= SecurityUtils.getSubject();
+        UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(user.getLoginacct(),user.getUserpswd());
+        subject.login(usernamePasswordToken);
+        return subject.isAuthenticated();
+    }
+
+    @Override
+    public TUser findTUserByLoginacct(String loginacct) {
+        return tUserMapper.selectTUserByLoginacct(loginacct);
     }
 
 }

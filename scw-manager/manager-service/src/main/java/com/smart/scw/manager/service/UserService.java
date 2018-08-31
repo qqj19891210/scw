@@ -11,8 +11,12 @@ public interface UserService {
 
     boolean isEmailExist(String email);
 
-    Map<String,Object> registCheck(BindingResult bindingResult,Map<String,Object> map);
+    Map<String, Object> check(BindingResult bindingResult, Map<String, Object> map);
 
-    boolean addRegist(TUser user);
+    void addRegist(TUser user);
+
+    boolean isAuthenticated(TUser user);
+
+    TUser findTUserByLoginacct(String loginacct);
 
 }

@@ -3,8 +3,9 @@ package com.smart.scw.manager.bean;
 import com.smart.scw.manager.validationGroup.UserGroup;
 
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 
-public class TUser {
+public class TUser implements Serializable {
     private Integer id;
 
     @Pattern(regexp = "^[a-zA-Z]\\w{6,16}$",message = "{Pattern.user.loginacct}",groups = {UserGroup.class})

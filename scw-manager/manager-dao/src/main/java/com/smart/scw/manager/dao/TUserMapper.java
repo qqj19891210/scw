@@ -10,4 +10,6 @@ public interface TUserMapper {
 
     int insertTUser(TUser user);
 
+    TUser selectTUserByLoginacct(String loginacct);
+
 }

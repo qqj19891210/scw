@@ -5,7 +5,7 @@
     <title>注册页面</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/bootstrap/bootstrap.min.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/regist.css"/>"/>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

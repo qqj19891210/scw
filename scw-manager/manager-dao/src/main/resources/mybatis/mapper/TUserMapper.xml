@@ -21,7 +21,12 @@
         WHERE email=#{email}
     </select>
 
-    <insert id="insertTUser">
+    <select id="selectTUserByLoginacct" resultMap="userMap">
+        SELECT * FROM t_user
+        WHERE loginacct=#{loginacct}
+    </select>
+
+    <insert id="insertTUser" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="loginacct!=null and loginacct!=''">

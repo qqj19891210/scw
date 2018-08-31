@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"
-          p:loginUrl="/permission/user/regist"
+          p:loginUrl="/permission/user/index"
           p:securityManager-ref="securityManager">
         <property name="filterChainDefinitions">
             <value>
@@ -18,7 +18,10 @@
                 /script/**=anon
                 /ztree/**=anon
                 /jquery/**=anon
+                /permission/user/index=anon
                 /permission/user/regist=anon
+                /permission/user/login=anon
+                /permission/user/loginCheck=anon
                 /permission/user/isLoginacctExist=anon
                 /permission/user/isEmailExist=anon
                 /permission/user/registCheck=anon
@@ -27,6 +30,14 @@
         </property>
     </bean>
 
-    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" />
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager"
+          p:realm-ref="customRealm"/>
+
+    <bean id="customRealm" class="com.smart.scw.manager.realm.CustomRealm"
+          p:credentialsMatcher-ref="credentialsMatcher"/>
+
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher"
+          p:hashAlgorithmName="md5"
+          p:hashIterations="1"/>
 
 </beans>

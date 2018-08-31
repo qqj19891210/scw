@@ -57,6 +57,10 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:5.0.8.RELEASE" />
+          <element id="library" level="project" name="Maven: cglib:cglib:3.2.7" />
+          <element id="library" level="project" name="Maven: org.ow2.asm:asm:6.2" />
+          <element id="library" level="project" name="Maven: org.apache.ant:ant:1.10.3" />
+          <element id="library" level="project" name="Maven: org.apache.ant:ant-launcher:1.10.3" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.4.0" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-lang:1.4.0" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-cache:1.4.0" />

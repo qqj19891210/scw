@@ -18,23 +18,26 @@
 
 <div class="container">
 
-    <form id="registForm" class="form-signin" role="form" action="<c:url value="/permission/user/regist"/>"
+    <form id="registForm" class="form-signin" role="form" action="<c:url value="/permission/user/registCheck"/>"
           method="post">
         <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i> 用户注册</h2>
         <div class="form-group has-success has-feedback">
             <input type="text" class="form-control" id="loginacct_input" name="loginacct" placeholder="请输入登录账号"
                    autofocus>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <div class="errorClass" id="loginacct_span">${errors['loginacct']}</div>
         </div>
         <div class="form-group has-success has-feedback">
             <input type="password" class="form-control" id="userpswd_input" name="userpswd" placeholder="请输入登录密码"
                    style="margin-top:10px;">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <div class="errorClass" id="userpswd_span">${errors['userpswd']}</div>
         </div>
         <div class="form-group has-success has-feedback">
             <input type="text" class="form-control" id="email_input" name="email" placeholder="请输入邮箱地址"
                    style="margin-top:10px;">
             <span class="glyphicon glyphicon glyphicon-envelope form-control-feedback"></span>
+            <div class="errorClass" id="email_span">${errors['email']}</div>
         </div>
         <div class="form-group has-success has-feedback">
             <select class="form-control">

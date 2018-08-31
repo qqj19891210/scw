@@ -26,6 +26,12 @@
         <fileset id="fileset3" name="ApplicationContext Mybatis" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext-config/applicationContext-mybatis.xml</file>
         </fileset>
+        <fileset id="fileset4" name="ApplicationContext Shiro" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext-config/applicationContext-shiro.xml</file>
+        </fileset>
+        <fileset id="fileset5" name="ApplicationContext TransactionManager" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext-config/applicationContext-transactionManager.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>
@@ -105,5 +111,8 @@
     <orderEntry type="library" name="Maven: javax.servlet.jsp.jstl:jstl:1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet.jsp:javax.servlet.jsp-api:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.4.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.testng:testng:6.14.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.beust:jcommander:1.72" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apache-extras.beanshell:bsh:2.0b6" level="project" />
   </component>
 </module>

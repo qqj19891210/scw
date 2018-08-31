@@ -1,17 +1,27 @@
 package com.smart.scw.manager.bean;
 
+import com.smart.scw.manager.validationGroup.UserGroup;
+
+import javax.validation.constraints.Pattern;
+
 public class TUser {
     private Integer id;
 
+    @Pattern(regexp = "^[a-zA-Z]\\w{6,16}$",message = "{Pattern.user.loginacct}",groups = {UserGroup.class})
     private String loginacct;
 
+    @Pattern(regexp = "^[a-zA-Z0-9]{6,16}$",message = "{Pattern.user.password}",groups = {UserGroup.class})
     private String userpswd;
 
     private String username;
 
+    @Pattern(regexp = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*",
+            message = "{Pattern.user.email}",groups = {UserGroup.class})
     private String email;
 
     private String createtime;
+
+    private String salt;
 
     public Integer getId() {
         return id;
@@ -60,4 +70,26 @@ public class TUser {
     public void setCreatetime(String createtime) {
         this.createtime = createtime == null ? null : createtime.trim();
     }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TUser{" +
+                "id=" + id +
+                ", loginacct='" + loginacct + '\'' +
+                ", userpswd='" + userpswd + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", createtime='" + createtime + '\'' +
+                ", salt='" + salt + '\'' +
+                '}';
+    }
+
 }

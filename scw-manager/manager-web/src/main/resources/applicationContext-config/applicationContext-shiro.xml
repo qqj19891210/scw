@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"
+          p:loginUrl="/permission/user/regist"
+          p:securityManager-ref="securityManager">
+        <property name="filterChainDefinitions">
+            <value>
+                /bootstrap/**=anon
+                /js/**=anon
+                /css/**=anon
+                /images/**=anon
+                /fonts/**=anon
+                /script/**=anon
+                /ztree/**=anon
+                /jquery/**=anon
+                /permission/user/regist=anon
+                /permission/user/isLoginacctExist=anon
+                /permission/user/isEmailExist=anon
+                /permission/user/registCheck=anon
+                /**=authc
+            </value>
+        </property>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" />
+
+</beans>

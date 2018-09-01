@@ -1,10 +1,6 @@
 $(function () {
 
-    $("input").focus(function () {
-       $(".errorClass").empty();
-    });
-
-    $("#login").click(function () {
+    $("#loginForm").submit(function () {
         var type = $(":selected").val();
         if (type == "manager") {
             //管理员登录

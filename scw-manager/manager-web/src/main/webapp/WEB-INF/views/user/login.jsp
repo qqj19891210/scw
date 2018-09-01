@@ -49,7 +49,7 @@
                 <a href="reg.html">我要注册</a>
             </label>
         </div>
-        <a class="btn btn-lg btn-success btn-block" id="login"> 登录</a>
+        <button class="btn btn-lg btn-success btn-block" id="login"> 登录</button>
         <a class="btn btn-lg btn-success btn-danger" id="logout">退出</a>
     </form>
 </div>

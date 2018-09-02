@@ -231,7 +231,7 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>javax.servlet.jsp.jstl</groupId>
+                <groupId>javax.servlet</groupId>
                 <artifactId>jstl</artifactId>
                 <version>${jstl-api.version}</version>
             </dependency>

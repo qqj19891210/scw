@@ -46,7 +46,7 @@
                 忘记密码
             </label>
             <label style="float:right">
-                <a href="reg.html">我要注册</a>
+                <a href="<c:url value="/permission/user/regist"/>">我要注册</a>
             </label>
         </div>
         <button class="btn btn-lg btn-success btn-block" id="login"> 登录</button>

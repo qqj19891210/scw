@@ -1,6 +1,9 @@
 package com.smart.scw.manager.bean;
 
-public class TPermission {
+import java.io.Serializable;
+import java.util.List;
+
+public class TPermission implements Serializable {
     private Integer id;
 
     private Integer pid;
@@ -10,6 +13,9 @@ public class TPermission {
     private String icon;
 
     private String url;
+
+    //子分类
+    private List<TPermission> children;
 
     public Integer getId() {
         return id;
@@ -49,5 +55,25 @@ public class TPermission {
 
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
+    }
+
+    public List<TPermission> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<TPermission> children) {
+        this.children = children;
+    }
+
+    @Override
+    public String toString() {
+        return "TPermission{" +
+                "id=" + id +
+                ", pid=" + pid +
+                ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", url='" + url + '\'' +
+                ", children=" + children +
+                '}';
     }
 }

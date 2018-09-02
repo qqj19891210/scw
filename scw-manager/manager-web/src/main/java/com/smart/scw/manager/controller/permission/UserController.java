@@ -42,9 +42,10 @@ public class UserController {
         return "user/login";
     }
 
-    @RequestMapping("/main")
-    public String main() {
-        return "manager/main";
+    //v权限管理/用户维护列表页面显示
+    @RequestMapping("/list")
+    public String users(){
+        return "manager/permission/user";
     }
 
     @RequestMapping("/isLoginacctExist")
@@ -62,20 +63,17 @@ public class UserController {
     }
 
     @RequestMapping("/registCheck")
-    public ModelAndView registCheck(@Validated(value = {UserGroup.class}) TUser user,
-                                    BindingResult bindingResult, HttpSession session) {
-        ModelAndView modelAndView = new ModelAndView();
+    public String registCheck(@Validated(value = {UserGroup.class}) TUser user,
+                              BindingResult bindingResult, HttpSession session) {
         Map<String, Object> result = new HashMap<>();
         if (bindingResult.hasErrors()) {
             result = userService.check(bindingResult, result);
-            modelAndView.setViewName("user/regist");
-            modelAndView.addObject("errors", result);
-            return modelAndView;
+            session.setAttribute("errors",result);
+            return "redirect:/permission/user/regist";
         }
         userService.addRegist(user);
         session.setAttribute(Constants.LOGIN_USER, user);
-        modelAndView.setViewName("manager/main");
-        return modelAndView;
+        return "redirect:/main";
     }
 
     @RequestMapping("/loginCheck")
@@ -93,8 +91,8 @@ public class UserController {
         }
         boolean isAuthenticated = userService.isAuthenticated(user);
         if (isAuthenticated) {
-            result.put("success", "main");
-            user=userService.findTUserByLoginacct(user.getLoginacct());
+            result.put("success", "/scw/main");
+            user = userService.findTUserByLoginacct(user.getLoginacct());
             session.setAttribute(Constants.LOGIN_USER, user);
         }
         fastJsonJsonView.setAttributesMap(result);

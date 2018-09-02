@@ -50,7 +50,7 @@
                 忘记密码
             </label>
             <label style="float:right">
-                <a href="<c:url value="/login"/>">我有账号</a>
+                <a href="<c:url value="/permission/user/login"/>">我有账号</a>
             </label>
         </div>
         <a class="btn btn-lg btn-success btn-block" id="submitBtn"> 注册</a>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<c:url value="/css/user.css"/>">
 </head>
 <body>
+${pageContext.setAttribute("navinfo","用户维护")}
 <%@ include file="/WEB-INF/views/includes/nav-bar.jsp" %>
 <div class="container-fluid">
     <div class="row">
@@ -18,14 +19,16 @@
                     <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
                 </div>
                 <div class="panel-body">
-                    <form class="form-inline" role="form" style="float:left;">
+                    <form class="form-inline" role="form" style="float:left;" method="post"
+                          action="<c:url value="/permission/user/list"/>">
                         <div class="form-group has-feedback">
                             <div class="input-group">
                                 <div class="input-group-addon">查询条件</div>
-                                <input class="form-control has-success" type="text" placeholder="请输入查询条件">
+                                <input class="form-control has-success" name="searchParam" type="text"
+                                       placeholder="请输入账号或者昵称信息" value="${searchParam}"/>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询
+                        <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询
                         </button>
                     </form>
                     <button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i
@@ -49,262 +52,82 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td><input type="checkbox"></td>
-                                <td>Lorem</td>
-                                <td>ipsum</td>
-                                <td>dolor</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><input type="checkbox"></td>
-                                <td>amet</td>
-                                <td>consectetur</td>
-                                <td>adipiscing</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><input type="checkbox"></td>
-                                <td>Integer</td>
-                                <td>nec</td>
-                                <td>odio</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><input type="checkbox"></td>
-                                <td>libero</td>
-                                <td>Sed</td>
-                                <td>cursus</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td><input type="checkbox"></td>
-                                <td>dapibus</td>
-                                <td>diam</td>
-                                <td>Sed</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td><input type="checkbox"></td>
-                                <td>Nulla</td>
-                                <td>quis</td>
-                                <td>sem</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td><input type="checkbox"></td>
-                                <td>nibh</td>
-                                <td>elementum</td>
-                                <td>imperdiet</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td><input type="checkbox"></td>
-                                <td>sagittis</td>
-                                <td>ipsum</td>
-                                <td>Praesent</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td><input type="checkbox"></td>
-                                <td>Fusce</td>
-                                <td>nec</td>
-                                <td>tellus</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td><input type="checkbox"></td>
-                                <td>augue</td>
-                                <td>semper</td>
-                                <td>porta</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11</td>
-                                <td><input type="checkbox"></td>
-                                <td>massa</td>
-                                <td>Vestibulum</td>
-                                <td>lacinia</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td><input type="checkbox"></td>
-                                <td>eget</td>
-                                <td>nulla</td>
-                                <td>Class</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>13</td>
-                                <td><input type="checkbox"></td>
-                                <td>taciti</td>
-                                <td>sociosqu</td>
-                                <td>ad</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>14</td>
-                                <td><input type="checkbox"></td>
-                                <td>torquent</td>
-                                <td>per</td>
-                                <td>conubia</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>15</td>
-                                <td><input type="checkbox"></td>
-                                <td>per</td>
-                                <td>inceptos</td>
-                                <td>himenaeos</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>16</td>
-                                <td><input type="checkbox"></td>
-                                <td>sodales</td>
-                                <td>ligula</td>
-                                <td>in</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs"><i
-                                            class=" glyphicon glyphicon-check"></i></button>
-                                    <button type="button" class="btn btn-primary btn-xs"><i
-                                            class=" glyphicon glyphicon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs"><i
-                                            class=" glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
+                            <c:forEach var="user" items="${pageInfo.list}">
+                                <tr>
+                                    <td>${user.id}</td>
+                                    <td><input type="checkbox"></td>
+                                    <td>${user.loginacct}</td>
+                                    <td>${user.username}</td>
+                                    <td>${user.email}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-xs"><i
+                                                class=" glyphicon glyphicon-check"></i></button>
+                                        <button type="button" class="btn btn-primary btn-xs"><i
+                                                class=" glyphicon glyphicon-pencil"></i></button>
+                                        <button type="button" class="btn btn-danger btn-xs"><i
+                                                class=" glyphicon glyphicon-remove"></i></button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                             <tfoot>
                             <tr>
                                 <td colspan="6" align="center">
                                     <ul class="pagination">
-                                        <li class="disabled"><a href="#">上一页</a></li>
-                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">下一页</a></li>
+                                        <%--
+                                            即使点击分页链接也应该带上查询条件的值
+                                            给分页超链接绑定单机事件
+                                        --%>
+                                        <li><a href="<c:url value="/permission/user/list?pageNumber=1"/>">首页</a></li>
+                                        <!--判断是否有上一页-->
+                                        <c:choose>
+                                            <c:when test="${pageInfo.hasPreviousPage}">
+                                                <li>
+                                                    <a href="<c:url value="/permission/user/list?pageNumber=${pageInfo.prePage}"/>">上一页</a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="disabled">
+                                                    <a href="#">上一页</a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <!--遍历连续显示的页码-->
+                                        <c:forEach var="currentPageNumber" items="${pageInfo.navigatepageNums}">
+                                            <!--如果是当前页有高亮标记-->
+                                            <c:if test="${currentPageNumber==pageInfo.pageNum}">
+                                                <li class="active"><a
+                                                        href="<c:url value="/permission/user/list?pageNumber=${currentPageNumber}"/>">${currentPageNumber}<span
+                                                        class="sr-only">(current)</span></a></li>
+                                            </c:if>
+                                            <c:if test="${currentPageNumber!=pageInfo.pageNum}">
+                                                <li>
+                                                    <a href="<c:url value="/permission/user/list?pageNumber=${currentPageNumber}"/>">${currentPageNumber}</a>
+                                                </li>
+                                            </c:if>
+                                        </c:forEach>
+                                        <c:choose>
+                                            <c:when test="${pageInfo.hasNextPage}">
+                                                <li>
+                                                    <a href="<c:url value="/permission/user/list?pageNumber=${pageInfo.nextPage}"/>">下一页</a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="disabled">
+                                                    <a href="#">下一页</a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <li>
+                                            <a href="<c:url value="/permission/user/list?pageNumber=${pageInfo.pages}"/>">尾页</a>
+                                        </li>
                                     </ul>
+                                    <!--文字信息-->
+                                    <div class="judge">
+                                        当前第 ${pageInfo.pageNum} 页,总共 ${pageInfo.pages} 页,一共 ${pageInfo.total} 条记录
+                                    </div>
                                 </td>
                             </tr>
-
                             </tfoot>
                         </table>
                     </div>

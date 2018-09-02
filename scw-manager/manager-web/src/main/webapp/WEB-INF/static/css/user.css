@@ -134,3 +134,6 @@ table tbody tr:nth-child(odd) {
 table tbody td:nth-child(even) {
     color: #C00;
 }
+.judge{
+    color: red;
+}

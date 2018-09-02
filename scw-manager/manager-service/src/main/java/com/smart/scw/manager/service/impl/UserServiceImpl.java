@@ -45,10 +45,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addRegist(TUser user) {
-        String password=user.getUserpswd();
-        String salt = UUID.randomUUID().toString().replaceAll("-","");
-        SimpleHash simpleHash=new SimpleHash("MD5",password,salt,1);
-        password=simpleHash.toString();
+        String password = user.getUserpswd();
+        String salt = UUID.randomUUID().toString().replaceAll("-", "");
+        SimpleHash simpleHash = new SimpleHash("MD5", password, salt, 1);
+        password = simpleHash.toString();
         user.setUserpswd(password);
         user.setSalt(salt);
         //设置昵称和创建时间
@@ -61,8 +61,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isAuthenticated(TUser user) {
-        Subject subject= SecurityUtils.getSubject();
-        UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(user.getLoginacct(),user.getUserpswd());
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getLoginacct(), user.getUserpswd());
         subject.login(usernamePasswordToken);
         return subject.isAuthenticated();
     }
@@ -70,6 +70,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public TUser findTUserByLoginacct(String loginacct) {
         return tUserMapper.selectTUserByLoginacct(loginacct);
+    }
+
+    @Override
+    public List<TUser> getAll() {
+        return tUserMapper.selectAll();
+    }
+
+    @Override
+    public List<TUser> getAllByCondition(String search) {
+        return tUserMapper.selectAllByCondition(search);
     }
 
 }

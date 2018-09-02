@@ -45,4 +45,10 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         System.out.println(list.size());
     }
 
+    @Test
+    public void test2(){
+        List<TUser> list=userService.getAllByCondition("q");
+        System.out.println(list);
+    }
+
 }

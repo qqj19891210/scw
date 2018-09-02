@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>
 </head>
 <body>
+${pageContext.setAttribute("navinfo","控制面板")}
 <%@ include file="/WEB-INF/views/includes/nav-bar.jsp" %>
 <div class="container-fluid">
     <div class="row">

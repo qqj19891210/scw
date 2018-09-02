@@ -3,6 +3,7 @@ package com.smart.scw.manager.service;
 import com.smart.scw.manager.bean.TUser;
 import org.springframework.validation.BindingResult;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserService {
@@ -18,5 +19,10 @@ public interface UserService {
     boolean isAuthenticated(TUser user);
 
     TUser findTUserByLoginacct(String loginacct);
+
+    List<TUser> getAll();
+
+    //按条件查询
+    List<TUser> getAllByCondition(String search);
 
 }

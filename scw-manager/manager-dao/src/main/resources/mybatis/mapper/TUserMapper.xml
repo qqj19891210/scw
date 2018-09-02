@@ -26,6 +26,23 @@
         WHERE loginacct=#{loginacct}
     </select>
 
+    <select id="selectAll" resultMap="userMap">
+        SELECT  * FROM t_user
+    </select>
+
+    <select id="selectAllByCondition" resultMap="userMap">
+        SELECT * FROM t_user
+        <where>
+            <if test="search!=null and search!=''">
+                OR loginacct LIKE CONCAT('%',#{search},'%')
+            </if>
+            <if test="search!=null and search!=''">
+                OR username LIKE CONCAT('%',#{search},'%')
+            </if>
+        </where>
+    </select>
+
+
     <insert id="insertTUser" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">

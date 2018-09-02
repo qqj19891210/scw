@@ -2,6 +2,8 @@ package com.smart.scw.manager.controller.permission;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.support.spring.FastJsonJsonView;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.smart.scw.manager.bean.TUser;
 import com.smart.scw.manager.constant.Constants;
 import com.smart.scw.manager.service.UserService;
@@ -12,11 +14,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -42,10 +46,26 @@ public class UserController {
         return "user/login";
     }
 
-    //v权限管理/用户维护列表页面显示
+    /**
+     * pageNumber默认显示第几页
+     * pageSize每页显示多少用户
+     * 权限管理/用户维护列表页面显示
+     */
     @RequestMapping("/list")
-    public String users(){
-        return "manager/permission/user";
+    public ModelAndView users(@RequestParam(defaultValue = "1") Integer pageNumber,
+                              @RequestParam(defaultValue = "10") Integer pageSize,
+                              @RequestParam(value = "searchParam", defaultValue = "") String search) {
+        ModelAndView modelAndView = new ModelAndView();
+        //使用分页展示所有用户
+        PageHelper.startPage(pageNumber, pageSize);
+        //查出所有用户(按条件查询)
+        List<TUser> userList = userService.getAllByCondition(search);
+        //去页面显示的数据
+        PageInfo<TUser> pageInfo = new PageInfo<>(userList);
+        modelAndView.setViewName("manager/permission/user");
+        modelAndView.addObject("pageInfo", pageInfo);
+        modelAndView.addObject("searchParam",search);
+        return modelAndView;
     }
 
     @RequestMapping("/isLoginacctExist")
@@ -68,7 +88,7 @@ public class UserController {
         Map<String, Object> result = new HashMap<>();
         if (bindingResult.hasErrors()) {
             result = userService.check(bindingResult, result);
-            session.setAttribute("errors",result);
+            session.setAttribute("errors", result);
             return "redirect:/permission/user/regist";
         }
         userService.addRegist(user);

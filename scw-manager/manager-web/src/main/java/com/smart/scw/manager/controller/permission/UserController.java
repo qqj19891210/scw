@@ -64,7 +64,7 @@ public class UserController {
         PageInfo<TUser> pageInfo = new PageInfo<>(userList);
         modelAndView.setViewName("manager/permission/user");
         modelAndView.addObject("pageInfo", pageInfo);
-        modelAndView.addObject("searchParam",search);
+        modelAndView.addObject("searchParam", search);
         return modelAndView;
     }
 
@@ -118,6 +118,20 @@ public class UserController {
         fastJsonJsonView.setAttributesMap(result);
         modelAndView.setView(fastJsonJsonView);
         return modelAndView;
+    }
+
+    @RequestMapping("/del")
+    public String userDelete(@RequestParam(value = "ids", defaultValue = "") String ids) {
+        if (!ids.trim().equals("")) {
+            userService.deleteBatchOrSingle(ids);
+        }
+        return "redirect:/permission/user/list";
+    }
+
+    //权限分配页面
+    @RequestMapping("/toAssignRolePage")
+    public String toAssignRolePage(){
+        return "manager/permission/assignRole";
     }
 
 }

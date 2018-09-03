@@ -51,4 +51,9 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         System.out.println(list);
     }
 
+    @Test
+    public void test3(){
+        userService.deleteBatchOrSingle("86,87,88");
+    }
+
 }

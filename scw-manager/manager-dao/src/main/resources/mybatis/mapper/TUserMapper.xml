@@ -88,4 +88,17 @@
         </trim>
     </insert>
 
+    <delete id="deleteTUserById">
+        DELETE FROM t_user
+        WHERE id=#{ids}
+    </delete>
+
+    <delete id="deleteTuserByIds">
+        DELETE FROM t_user
+        WHERE id IN
+        <foreach collection="list" open="(" close=")" separator="," item="id" index="i">
+            #{id}
+        </foreach>
+    </delete>
+
 </mapper>

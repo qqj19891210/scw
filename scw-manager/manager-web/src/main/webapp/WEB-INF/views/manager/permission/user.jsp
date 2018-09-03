@@ -31,7 +31,7 @@ ${pageContext.setAttribute("navinfo","用户维护")}
                         <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询
                         </button>
                     </form>
-                    <button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i
+                    <button type="button" class="btn btn-danger deleteAllBtn" style="float:right;margin-left:10px;"><i
                             class=" glyphicon glyphicon-remove"></i> 删除
                     </button>
                     <button type="button" class="btn btn-primary" style="float:right;"
@@ -44,7 +44,7 @@ ${pageContext.setAttribute("navinfo","用户维护")}
                             <thead>
                             <tr>
                                 <th width="30">#</th>
-                                <th width="30"><input type="checkbox"></th>
+                                <th width="30"><input id="checkAll_btn" type="checkbox"></th>
                                 <th>账号</th>
                                 <th>名称</th>
                                 <th>邮箱地址</th>
@@ -55,13 +55,14 @@ ${pageContext.setAttribute("navinfo","用户维护")}
                             <c:forEach var="user" items="${pageInfo.list}">
                                 <tr>
                                     <td>${user.id}</td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input class="single_check" type="checkbox" del_id="${user.id}"></td>
                                     <td>${user.loginacct}</td>
                                     <td>${user.username}</td>
                                     <td>${user.email}</td>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-xs"><i
-                                                class=" glyphicon glyphicon-check"></i></button>
+                                        <button user_id="${user.id}" type="button"
+                                                class="btn btn-success btn-xs assignBtn">
+                                            <i class=" glyphicon glyphicon-check"></i></button>
                                         <button type="button" class="btn btn-primary btn-xs"><i
                                                 class=" glyphicon glyphicon-pencil"></i></button>
                                         <button type="button" class="btn btn-danger btn-xs"><i

@@ -25,4 +25,7 @@ public interface UserService {
     //按条件查询
     List<TUser> getAllByCondition(String search);
 
+    //批量删除或者按照id删除
+    void deleteBatchOrSingle(String ids);
+
 }

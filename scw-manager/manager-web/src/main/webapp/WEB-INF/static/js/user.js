@@ -22,10 +22,38 @@ $(function () {
     //为所有分页链接绑定单击事件,让其动态带上分页查询参数
     $(".pagination").find("a").click(function () {
         //获取到查询表单的查询参数
-        var param=$("input[name=searchParam]").val();
+        var param = $("input[name=searchParam]").val();
         //不禁用默认行为,而是为超链接拼装上查询条件
-        var href = $(this).prop("href")+"&searchParam="+param;
-        $(this).prop("href",href);
+        var href = $(this).prop("href") + "&searchParam=" + param;
+        $(this).prop("href", href);
+    });
+
+    //全选和全不选功能
+    checkAll_reverse($("#checkAll_btn"), $(".single_check"))
+
+    //点击删除按钮,先拿到所有员工的id
+    $(".deleteAllBtn").click(function () {
+        var delUrl = "/scw/permission/user/del?ids=";
+        var ids = "";
+        $(".single_check:checked").each(function () {
+            //取出自定义的id属性
+            ids += $(this).attr("del_id") + ",";
+        });
+        //剔除最后一个逗号
+        delUrl += ids.substring(0, ids.length - 1);
+        if (confirm("确认删除【" + ids + "】这个员工吗")) {
+            location.href = delUrl;
+        }
+        return false;
+    });
+
+    //权限分配按钮,来到权限分配页面
+    $(".assignBtn").click(function () {
+        //必须将用户id带给后台
+        var id = $(this).attr("user_id");
+        //跳转到权限分配页面
+        var url="/scw/permission/user/toAssignRolePage";
+        location.href=url;
     });
 
 });
@@ -40,4 +68,19 @@ function changePageStatus(url) {
     $("a[href='/scw" + url + "']").parents(".list-group-item").removeClass("tree-closed");
 
     $("a[href='/scw" + url + "']").parent().parent("ul").show(100);
+}
+
+//传入全选按钮对象
+function checkAll_reverse(checkAll_btn, checkBtn) {
+    checkAll_btn.click(function () {
+        //获取单选框的值,如果选中则是true,反之是false
+        var flag = $(this).prop("checked");
+        checkBtn.prop("checked", flag);
+    });
+    checkBtn.click(function () {
+        //当 checkBtn被点满以后checkAll_btn也勾上,否则不勾上
+        //获取被选中的checkBtn的个数
+        var flag = checkBtn.filter(":checked").length == checkBtn.length;
+        checkAll_btn.prop("checked", flag);
+    });
 }

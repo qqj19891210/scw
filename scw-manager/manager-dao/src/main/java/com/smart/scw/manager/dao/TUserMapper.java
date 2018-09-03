@@ -19,4 +19,9 @@ public interface TUserMapper {
 
     List<TUser> selectAllByCondition(@Param("search") String search);
 
+    int deleteTUserById(@Param("ids") Integer ids);
+
+    //批量删除
+    int deleteTuserByIds(List<Integer> ids);
+
 }

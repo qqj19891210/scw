@@ -13,10 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -80,6 +77,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<TUser> getAllByCondition(String search) {
         return tUserMapper.selectAllByCondition(search);
+    }
+
+    @Override
+    public void deleteBatchOrSingle(String ids) {
+        if (ids.contains(",")) {
+            //进行批量删除
+            List<Integer> list=new ArrayList<>();
+            String[] split = ids.split(",");
+            for(String s:split){
+                list.add(Integer.parseInt(s));
+            }
+            tUserMapper.deleteTuserByIds(list);
+        } else {
+            //按照id进行删除
+            tUserMapper.deleteTUserById(Integer.parseInt(ids));
+        }
     }
 
 }

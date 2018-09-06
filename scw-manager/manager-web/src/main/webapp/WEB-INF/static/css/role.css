@@ -122,15 +122,14 @@ body {
     height: auto;
 }
 
-option{
-    font-weight: bold;
-    margin-bottom: 8px;
+table tbody tr:nth-child(odd) {
+    background: #F4F4F4;
 }
 
-.unrole_select>option{
+table tbody td:nth-child(even) {
+    color: #C00;
+}
+
+.judge {
     color: red;
-}
-
-.role_select>option{
-    color: #00CCFF;
 }

@@ -1,4 +1,5 @@
 $(function () {
+
     $(".list-group-item").click(function () {
         if ($(this).find("ul")) {
             $(this).toggleClass("tree-closed");
@@ -8,13 +9,6 @@ $(function () {
                 $("ul", this).show("fast");
             }
         }
-    });
-
-    $("tbody .btn-success").click(function () {
-        window.location.href = "assignRole.html";
-    });
-    $("tbody .btn-primary").click(function () {
-        window.location.href = "edit.html";
     });
 
     changePageStatus("/permission/user/list");
@@ -52,8 +46,29 @@ $(function () {
         //必须将用户id带给后台
         var id = $(this).attr("user_id");
         //跳转到权限分配页面
-        var url="/scw/permission/user/toAssignRolePage";
+        var url="/scw/permission/role/toAssignRolePage?id="+id;
         location.href=url;
+    });
+
+    //删除小按钮
+    $(".removeBtn").click(function () {;
+        var uid=$(this).attr("remove_id");
+        var delUrl="/scw/permission/user/del?ids="+uid;
+        if (confirm("确认删除【" + uid + "】这个员工吗")) {
+            location.href=delUrl;
+        }
+        return false;
+    });
+
+    //修改用户按钮
+    $(".assignUserModelBtn").click(function () {
+        var options = {
+            //点击背景不会关闭模态框
+            backdrop: "static",
+            show: true
+        };
+        //打开模态框
+        $('#permissionModel').modal(options);
     });
 
 });

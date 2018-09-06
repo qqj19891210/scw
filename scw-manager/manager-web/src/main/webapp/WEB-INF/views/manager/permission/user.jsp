@@ -63,9 +63,10 @@ ${pageContext.setAttribute("navinfo","用户维护")}
                                         <button user_id="${user.id}" type="button"
                                                 class="btn btn-success btn-xs assignBtn">
                                             <i class=" glyphicon glyphicon-check"></i></button>
-                                        <button type="button" class="btn btn-primary btn-xs"><i
+                                        <button type="button" class="btn btn-primary btn-xs assignUserModelBtn"><i
                                                 class=" glyphicon glyphicon-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger btn-xs"><i
+                                        <button type="button" class="btn btn-danger btn-xs removeBtn"
+                                                remove_id="${user.id}"><i
                                                 class=" glyphicon glyphicon-remove"></i></button>
                                     </td>
                                 </tr>
@@ -133,6 +134,56 @@ ${pageContext.setAttribute("navinfo","用户维护")}
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--模态框-->
+<div class="modal fade" id="permissionModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">修改用户</h4>
+            </div>
+            <div class="modal-body">
+                <!--展示权限树-->
+                <div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">表单数据
+                            <div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i
+                                    class="glyphicon glyphicon-question-sign"></i></div>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">登陆账号</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" value="test">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">用户名称</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" value="测试用户">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">邮箱地址</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                           value="xxxx@xxxx.com">
+                                    <p class="help-block label label-warning">请输入合法的邮箱地址, 格式为： xxxx@xxxx.com</p>
+                                </div>
+                                <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i>
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i>
+                                    重置
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>

@@ -1,16 +1,13 @@
 package com.smart.scw.manager.dao;
 
-import com.smart.scw.manager.bean.TUserRole;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface TUserRoleMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(TUserRole record);
+    int insertRoleByIds(@Param("ids") List<Integer> ids,@Param("userId") Integer userId);
 
-    TUserRole selectByPrimaryKey(Integer id);
+    int deleteRoleByIds(@Param("ids") List<Integer> ids,@Param("userId") Integer userId);
 
-    List<TUserRole> selectAll();
-
-    int updateByPrimaryKey(TUserRole record);
 }

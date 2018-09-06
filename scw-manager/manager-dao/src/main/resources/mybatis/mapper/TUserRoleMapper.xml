@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smart.scw.manager.dao.TUserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.smart.scw.manager.bean.TUserRole">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="userid" jdbcType="INTEGER" property="userid" />
-    <result column="roleid" jdbcType="INTEGER" property="roleid" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_user_role
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.smart.scw.manager.bean.TUserRole">
-    insert into t_user_role (id, userid, roleid
-      )
-    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.smart.scw.manager.bean.TUserRole">
-    update t_user_role
-    set userid = #{userid,jdbcType=INTEGER},
-      roleid = #{roleid,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, userid, roleid
-    from t_user_role
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, userid, roleid
-    from t_user_role
-  </select>
+    <resultMap id="BaseResultMap" type="com.smart.scw.manager.bean.TUserRole">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="roleid" jdbcType="INTEGER" property="roleid"/>
+    </resultMap>
+
+    <insert id="insertRoleByIds">
+        INSERT INTO t_user_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId!=null and userId!=''">
+                userid,
+            </if>
+            roleid,
+        </trim>
+        VALUES
+        <foreach collection="ids" item="roleid" separator=",">
+            (
+            #{userId}, #{roleid}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteRoleByIds">
+        DELETE FROM t_user_role
+        WHERE userid =#{userId}
+        AND roleid IN
+        <foreach collection="ids" open="(" close=")" separator="," item="id" index="i">
+            #{id}
+        </foreach>
+
+    </delete>
+
 </mapper>

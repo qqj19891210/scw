@@ -44,4 +44,14 @@ public class TPermissionServiceImpl implements TPermissionService {
         return parents;
     }
 
+    @Override
+    public List<TPermission> getAll() {
+        return tPermissionMapper.selectAllMenus();
+    }
+
+    @Override
+    public List<TPermission> getRolePermission(Integer rid) {
+        return tPermissionMapper.getRolePermission(rid);
+    }
+
 }

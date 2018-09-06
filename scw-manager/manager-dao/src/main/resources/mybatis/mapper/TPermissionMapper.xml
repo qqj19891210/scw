@@ -13,4 +13,18 @@
         SELECT * FROM t_permission
     </select>
 
+    <select id="getRolePermission" resultMap="permissionMap">
+        SELECT p.id,
+                p.pid,
+                p.name,
+                p.icon,
+                p.url
+        FROM t_permission p
+        LEFT JOIN t_role_permission t
+        ON p.id = t.permissionid
+        LEFT JOIN t_role r
+        ON t.roleid = r.id
+        WHERE r.id=#{rid}
+    </select>
+
 </mapper>

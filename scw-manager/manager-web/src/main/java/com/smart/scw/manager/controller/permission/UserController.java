@@ -93,7 +93,7 @@ public class UserController {
         }
         userService.addRegist(user);
         session.setAttribute(Constants.LOGIN_USER, user);
-        return "redirect:/main";
+        return "redirect:/permission/main";
     }
 
     @RequestMapping("/loginCheck")
@@ -111,7 +111,7 @@ public class UserController {
         }
         boolean isAuthenticated = userService.isAuthenticated(user);
         if (isAuthenticated) {
-            result.put("success", "/scw/main");
+            result.put("success", "/scw/permission/main");
             user = userService.findTUserByLoginacct(user.getLoginacct());
             session.setAttribute(Constants.LOGIN_USER, user);
         }
@@ -126,12 +126,6 @@ public class UserController {
             userService.deleteBatchOrSingle(ids);
         }
         return "redirect:/permission/user/list";
-    }
-
-    //权限分配页面
-    @RequestMapping("/toAssignRolePage")
-    public String toAssignRolePage(){
-        return "manager/permission/assignRole";
     }
 
 }

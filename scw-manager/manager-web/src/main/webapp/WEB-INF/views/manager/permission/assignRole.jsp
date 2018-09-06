@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="<c:url value="/css/doc.min.css"/>">
 </head>
 <body>
+${pageContext.setAttribute("navinfo","用户维护")}
 <%@ include file="/WEB-INF/views/includes/nav-bar.jsp" %>
 <div class="container-fluid">
     <div class="row">
-        <%@include file="/WEB-INF/views/includes/user_menu.jsp"%>
+        <%@include file="/WEB-INF/views/includes/user_menu.jsp" %>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <ol class="breadcrumb">
                 <li><a href="#">首页</a></li>
@@ -24,12 +25,10 @@
                     <form role="form" class="form-inline">
                         <div class="form-group">
                             <label for="exampleInputPassword1">未分配角色列表</label><br>
-                            <select class="form-control" multiple size="10" style="width:100px;overflow-y:auto;">
-                                <option value="pm">PM</option>
-                                <option value="sa">SA</option>
-                                <option value="se">SE</option>
-                                <option value="tl">TL</option>
-                                <option value="gl">GL</option>
+                            <select class="form-control unrole_select" multiple size="10" style="width:100px;overflow-y:auto;">
+                                <c:forEach var="unrole" items="${unroles}">
+                                    <option class="unroles" value="${unrole.id}">${unrole.name}</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="form-group">
@@ -42,42 +41,15 @@
                         </div>
                         <div class="form-group" style="margin-left:40px;">
                             <label for="exampleInputPassword1">已分配角色列表</label><br>
-                            <select class="form-control" multiple size="10" style="width:100px;overflow-y:auto;">
-                                <option value="qa">QA</option>
-                                <option value="qc">QC</option>
-                                <option value="pg">PG</option>
+                            <select class="form-control role_select" multiple size="10" style="width:100px;overflow-y:auto;">
+                                <c:forEach var="userRole" items="${userRoles}">
+                                    <option class="userRoles" value="${userRole.id}">${userRole.name}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                        class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">帮助</h4>
-            </div>
-            <div class="modal-body">
-                <div class="bs-callout bs-callout-info">
-                    <h4>测试标题1</h4>
-                    <p>测试内容1，测试内容1，测试内容1，测试内容1，测试内容1，测试内容1</p>
-                </div>
-                <div class="bs-callout bs-callout-info">
-                    <h4>测试标题2</h4>
-                    <p>测试内容2，测试内容2，测试内容2，测试内容2，测试内容2，测试内容2</p>
-                </div>
-            </div>
-            <!--
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-            -->
         </div>
     </div>
 </div>

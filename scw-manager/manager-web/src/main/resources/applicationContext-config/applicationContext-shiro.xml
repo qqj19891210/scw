@@ -25,7 +25,7 @@
                 /permission/user/isLoginacctExist=anon
                 /permission/user/isEmailExist=anon
                 /permission/user/registCheck=anon
-                /main=anon
+                /permission/main=anon
                 /logout=logout
                 /**=authc
             </value>

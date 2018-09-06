@@ -5,7 +5,7 @@
     <div class="tree">
         <ul style="padding-left:0px;" class="list-group">
             <li class="list-group-item tree-closed">
-                <a href="<c:url value="/main"/>"><i class="glyphicon glyphicon-dashboard"></i>
+                <a href="<c:url value="/permission/main"/>"><i class="glyphicon glyphicon-dashboard"></i>
                     控制面板</a>
             </li>
             <c:forEach var="menu" items="${userMenus}">

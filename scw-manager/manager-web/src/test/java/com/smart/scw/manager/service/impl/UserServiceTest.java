@@ -1,9 +1,9 @@
 package com.smart.scw.manager.service.impl;
 
 import com.smart.scw.manager.bean.TPermission;
+import com.smart.scw.manager.bean.TRole;
 import com.smart.scw.manager.bean.TUser;
-import com.smart.scw.manager.service.TPermissionService;
-import com.smart.scw.manager.service.UserService;
+import com.smart.scw.manager.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,6 +21,15 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
 
     @Autowired
     private TPermissionService tPermissionService;
+
+    @Autowired
+    private TRoleService tRoleService;
+
+    @Autowired
+    private TUserRoleService tUserRoleService;
+
+    @Autowired
+    private TRolePermissionService tRolePermissionService;
 
     @Test
     public void test(){
@@ -54,6 +63,51 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
     @Test
     public void test3(){
         userService.deleteBatchOrSingle("86,87,88");
+    }
+
+    @Test
+    public void test4(){
+        List<TRole> list=tRoleService.getAllRoles();
+        System.out.println(list);
+    }
+
+    @Test
+    public void test5(){
+        List<TRole> list=tRoleService.getUserRoles(45);
+        System.out.println(list);
+    }
+
+    @Test
+    public void test6(){
+        tUserRoleService.addRoles("6,7,8",45);
+
+    }
+
+    @Test
+    public void test7(){
+        tUserRoleService.deleteRoles("1,2,8",45);
+    }
+
+    @Test
+    public void test8(){
+        List<TRole> roles=tRoleService.getAllByCondition("");
+        System.out.println(roles);
+    }
+
+    @Test
+    public void test9(){
+        List<TPermission> list=tPermissionService.getRolePermission(1);
+        System.out.println(list);
+    }
+
+    @Test
+    public void test10(){
+        tRolePermissionService.updateRolePermission(null,1);
+    }
+
+    @Test
+    public void test11(){
+        tRolePermissionService.updateRolePermission("2,3,8",1);
     }
 
 }

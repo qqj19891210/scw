@@ -1,6 +1,8 @@
 package com.smart.scw.manager.bean;
 
-public class TUserRole {
+import java.io.Serializable;
+
+public class TUserRole implements Serializable {
     private Integer id;
 
     private Integer userid;

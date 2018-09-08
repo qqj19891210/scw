@@ -3,10 +3,12 @@ $(function () {
     $("#loginForm").submit(function () {
         var type = $(":selected").val();
         if (type == "manager") {
+            var check = $("input[name='rememberMe']").is(":checked");
             //管理员登录
             var fromData = {
                 "loginacct": $("#loginacct_input").val(),
-                "userpswd": $("#userpswd_input").val()
+                "userpswd": $("#userpswd_input").val(),
+                "rememberMe": check
             };
             $.ajax({
                 url: "loginCheck",

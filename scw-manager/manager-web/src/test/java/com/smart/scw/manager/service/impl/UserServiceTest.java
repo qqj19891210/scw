@@ -110,4 +110,22 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         tRolePermissionService.updateRolePermission("2,3,8",1);
     }
 
+    @Test
+    public  void test12(){
+        boolean flag=userService.isSendEmail("zhangsan@atguigu.com");
+        System.out.println(flag);
+    }
+
+    @Test
+    public void test13(){
+        int x=userService.getUserIdByToken("b77e3a432af14ac0b2f679b9fc3470fc");
+        System.out.println(x);
+    }
+
+    @Test
+    public void test14(){
+        boolean flag=userService.updatePasswordByUserId("123456","b77e3a432af14ac0b2f679b9fc3470fc");
+        System.out.println(flag);
+    }
+
 }

@@ -39,11 +39,11 @@
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="remember-me"> 记住我
+                <input type="checkbox" name="rememberMe" value="remember-me"> 记住我
             </label>
             <br>
             <label>
-                忘记密码
+                <a href="<c:url value="/permission/user/forgetPsw"/>">忘记密码</a>
             </label>
             <label style="float:right">
                 <a href="<c:url value="/permission/user/regist"/>">我要注册</a>

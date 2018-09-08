@@ -25,7 +25,11 @@
                 /permission/user/isLoginacctExist=anon
                 /permission/user/isEmailExist=anon
                 /permission/user/registCheck=anon
-                /permission/main=anon
+                /permission/main=user
+                /permission/user/forgetPsw=anon
+                /permission/user/sendEmail=anon
+                /permission/user/getpwd=anon
+                /permission/user/updatePwd=anon
                 /logout=logout
                 /**=authc
             </value>
@@ -33,7 +37,25 @@
     </bean>
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager"
-          p:realm-ref="customRealm"/>
+          p:realm-ref="customRealm"
+          p:sessionManager-ref="sessionManager"
+          p:rememberMeManager-ref="rememberManager"/>
+
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager"
+          p:globalSessionTimeout="600000"
+          p:deleteInvalidSessions="true"
+          p:sessionIdUrlRewritingEnabled="true"/>
+
+    <!--rememberManager管理器,写cookie,取出cookie生成用户信息-->
+    <bean id="rememberManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager"
+          p:cookie-ref="rememberCookie"/>
+
+    <!--记住我cookie,生效时间30天-->
+    <bean id="rememberCookie" class="org.apache.shiro.web.servlet.SimpleCookie"
+          p:maxAge="2592000">
+        <!--rememberMe是Cookie的名字-->
+        <constructor-arg value="rememberMe"/>
+    </bean>
 
     <bean id="customRealm" class="com.smart.scw.manager.realm.CustomRealm"
           p:credentialsMatcher-ref="credentialsMatcher"/>

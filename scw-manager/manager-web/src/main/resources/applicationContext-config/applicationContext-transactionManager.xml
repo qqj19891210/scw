@@ -27,6 +27,7 @@
             <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
             <tx:method name="delete*" rollback-for="Exception" isolation="REPEATABLE_READ"/>
             <tx:method name="update*" rollback-for="Exception" isolation="REPEATABLE_READ"/>
+            <tx:method name="is*" rollback-for="Exception" isolation="REPEATABLE_READ"/>
         </tx:attributes>
     </tx:advice>
 

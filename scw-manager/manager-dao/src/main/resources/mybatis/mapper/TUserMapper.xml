@@ -42,6 +42,10 @@
         </where>
     </select>
 
+    <select id="selectByEmail" resultMap="userMap">
+        SELECT * FROM  t_user
+        WHERE email=#{email}
+    </select>
 
     <insert id="insertTUser" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_user
@@ -100,5 +104,19 @@
             #{id}
         </foreach>
     </delete>
+
+    <update id="updatePasswordByUserId">
+        UPDATE t_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="password!=null and password!=''">
+                userpswd=#{password},
+            </if>
+            <if test="salt!=null and salt!=''">
+                salt=#{salt},
+            </if>
+            id=#{userid},
+        </trim>
+        WHERE id=#{userid}
+    </update>
 
 </mapper>

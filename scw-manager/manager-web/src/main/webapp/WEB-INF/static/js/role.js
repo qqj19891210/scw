@@ -130,7 +130,9 @@ function changePageStatus(url) {
 function showIcon(treeId, treeNode) {
     //treeNode里边有一个tId,这个tId用来拼串以后就是图标显示位置的元素id和名字显示位置元素的id
     //改图标:找到当前元素图标显示的节点,将这个节点的class设置为当前节点的icon值
-    $("#" + treeNode.tId + "_ico").removeClass().addClass(treeNode.icon);
+    //移除默认图标
+    $("#" + treeNode.tId + "_ico").removeClass();
+    $("#" + treeNode.tId + "_ico").before("<span class='"+treeNode.icon+"'></span>");
 }
 
 //权限树的勾选方法,传入角色id

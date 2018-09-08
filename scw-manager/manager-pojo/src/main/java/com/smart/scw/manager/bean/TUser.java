@@ -24,6 +24,8 @@ public class TUser implements Serializable {
 
     private String salt;
 
+    private boolean rememberMe;
+
     public Integer getId() {
         return id;
     }
@@ -80,6 +82,14 @@ public class TUser implements Serializable {
         this.salt = salt == null ? null : salt.trim();
     }
 
+    public boolean isRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(boolean rememberMe) {
+        this.rememberMe = rememberMe;
+    }
+
     @Override
     public String toString() {
         return "TUser{" +
@@ -90,6 +100,7 @@ public class TUser implements Serializable {
                 ", email='" + email + '\'' +
                 ", createtime='" + createtime + '\'' +
                 ", salt='" + salt + '\'' +
+                ", rememberMe=" + rememberMe +
                 '}';
     }
 

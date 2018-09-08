@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +101,8 @@ public class UserController {
     @RequestMapping("/loginCheck")
     @ResponseBody
     public ModelAndView loginCheck(@Validated(value = {UserGroup.class}) @RequestBody TUser user,
-                                   BindingResult bindingResult, HttpSession session) {
+                                   BindingResult bindingResult, HttpSession session,
+                                   HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView();
         FastJsonJsonView fastJsonJsonView = new FastJsonJsonView();
         Map<String, Object> result = new HashMap<>();
@@ -109,11 +112,20 @@ public class UserController {
             modelAndView.setView(fastJsonJsonView);
             return modelAndView;
         }
+        boolean flag = user.isRememberMe();
         boolean isAuthenticated = userService.isAuthenticated(user);
         if (isAuthenticated) {
             result.put("success", "/scw/permission/main");
             user = userService.findTUserByLoginacct(user.getLoginacct());
             session.setAttribute(Constants.LOGIN_USER, user);
+            if (flag) {
+                Cookie cookie = new Cookie("JSESSIONID", session.getId());
+                //一周内这个cookie都存在
+                cookie.setMaxAge(3600 * 24 * 7);
+                //springmvc处于安全考虑,只能设置当前路径的cookie
+                cookie.setPath(session.getServletContext().getContextPath());
+                response.addCookie(cookie);
+            }
         }
         fastJsonJsonView.setAttributesMap(result);
         modelAndView.setView(fastJsonJsonView);
@@ -126,6 +138,49 @@ public class UserController {
             userService.deleteBatchOrSingle(ids);
         }
         return "redirect:/permission/user/list";
+    }
+
+    //忘记密码
+    @RequestMapping("/forgetPsw")
+    public String forgetPsw() {
+        return "user/forgetPsw";
+    }
+
+    @RequestMapping("/sendEmail")
+    public ModelAndView sendEmail(@RequestParam("email") String email) {
+        System.out.println(email);
+        ModelAndView modelAndView = new ModelAndView();
+        boolean flag = userService.isSendEmail(email);
+        //如果存在 发邮件说成功 ,否则也提示发送成功,但不发送邮件
+        //收到邮箱地址,给邮箱发送重置连接
+        modelAndView.setViewName("user/success");
+        if (flag) {
+            modelAndView.addObject("msg", "我们已经为您的邮箱成功发送了一封邮件");
+        } else {
+            modelAndView.addObject("msg", "我们已经为您的邮箱发送了一封邮件");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping("/getpwd")
+    public String restPassword() {
+        //来到输入密码的页面
+        return "user/restPassword";
+    }
+
+    @RequestMapping("/updatePwd")
+    public ModelAndView updatePwd(@RequestParam("password") String password, @RequestParam("token") String token) {
+        ModelAndView modelAndView = new ModelAndView();
+        //先按照令牌取找到用户
+        boolean flag = userService.updatePasswordByUserId(password, token);
+        if (flag) {
+            modelAndView.addObject("msg", "密码重置成功,请重新登录");
+        } else {
+            modelAndView.addObject("msg", "密码重置连接失效,请重新造作");
+        }
+        //返回登录页面即可
+        modelAndView.setViewName("user/success");
+        return modelAndView;
     }
 
 }

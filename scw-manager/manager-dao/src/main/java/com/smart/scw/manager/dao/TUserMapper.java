@@ -24,4 +24,10 @@ public interface TUserMapper {
     //批量删除
     int deleteTuserByIds(List<Integer> ids);
 
+    TUser selectByEmail(String email);
+
+    int updatePasswordByUserId(@Param("userid") Integer userid,@Param("password") String password,
+                               @Param("salt") String salt);
+
+
 }

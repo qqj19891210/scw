@@ -28,4 +28,10 @@ public interface UserService {
     //批量删除或者按照id删除
     void deleteBatchOrSingle(String ids);
 
+    boolean isSendEmail(String email);
+
+    Integer getUserIdByToken(String token);
+
+    boolean updatePasswordByUserId(String password,String token);
+
 }

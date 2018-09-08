@@ -51,4 +51,9 @@ public class PermissionController {
         return tPermissionService.getRolePermission(rid);
     }
 
+    @RequestMapping("/list")
+    public String list(){
+        return "manager/permission/permission";
+    }
+
 }

@@ -60,9 +60,10 @@
         <shiro.version>1.4.0</shiro.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <activiti.version>7-201802-EA</activiti.version>
-        <activiti-spring.version>7-201802-EA</activiti-spring.version>
+        <activiti.version>6.0.0</activiti.version>
+        <activiti-spring.version>6.0.0</activiti-spring.version>
         <cglib.version>3.2.7</cglib.version>
+        <jackson.verison>2.9.6</jackson.verison>
     </properties>
 
     <!--依赖管理-->
@@ -157,6 +158,11 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
@@ -290,6 +296,21 @@
                 <groupId>org.activiti</groupId>
                 <artifactId>activiti-spring</artifactId>
                 <version>${activiti-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.verison}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.verison}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.verison}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

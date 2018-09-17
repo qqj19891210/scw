@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="scw-restapi:war">
+    <output-path>$PROJECT_DIR$/scw-restapi/target</output-path>
+    <root id="archive" name="scw-restapi.war">
+      <element id="artifact" artifact-name="scw-restapi:war exploded" />
+    </root>
+  </artifact>
+</component>

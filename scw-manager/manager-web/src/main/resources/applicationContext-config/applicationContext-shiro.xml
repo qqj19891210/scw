@@ -18,6 +18,7 @@
                 /script/**=anon
                 /ztree/**=anon
                 /jquery/**=anon
+                /layer/**=anon
                 /permission/user/index=anon
                 /permission/user/regist=anon
                 /permission/user/login=anon

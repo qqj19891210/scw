@@ -1,10 +1,14 @@
 package com.smart.scw.manager.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class TMember {
     private Integer id;
 
     private String loginacct;
 
+    //不返回这个字段
+    @JSONField(serialize = false)
     private String userpswd;
 
     private String username;
@@ -20,6 +24,9 @@ public class TMember {
     private String cardnum;
 
     private String accttype;
+
+    @JSONField(serialize = false)
+    private String salt;
 
     public Integer getId() {
         return id;
@@ -100,4 +107,30 @@ public class TMember {
     public void setAccttype(String accttype) {
         this.accttype = accttype == null ? null : accttype.trim();
     }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TMember{" +
+                "id=" + id +
+                ", loginacct='" + loginacct + '\'' +
+                ", userpswd='" + userpswd + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", authstatus='" + authstatus + '\'' +
+                ", usertype='" + usertype + '\'' +
+                ", realname='" + realname + '\'' +
+                ", cardnum='" + cardnum + '\'' +
+                ", accttype='" + accttype + '\'' +
+                ", salt='" + salt + '\'' +
+                '}';
+    }
+
 }

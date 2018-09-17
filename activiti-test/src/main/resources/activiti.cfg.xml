@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+        <property name="jdbcUrl"
+                  value="jdbc:mysql://localhost:3306/activiti_db?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;useSSL=false"/>
+        <property name="jdbcDriver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUsername" value="root"/>
+        <property name="jdbcPassword" value="qqj19891210"/>
+        <!--
+            数据库模式:更新
+            第一次运行创建各个表
+            以后运行:修改表
+        -->
+        <property name="databaseSchemaUpdate" value="true"/>
+        <property name="asyncExecutorActivate" value="false"/>
+        <property name="activityFontName" value="宋体"></property>
+        <property name="annotationFontName" value="宋体"></property>
+        <property name="labelFontName" value="宋体"></property>
+    </bean>
+
+</beans>

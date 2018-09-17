@@ -13,4 +13,10 @@ public interface TMemberMapper {
     List<TMember> selectAll();
 
     int updateByPrimaryKey(TMember record);
+
+    int selectByEmail(String email);
+
+    int selectByLoginacct(String loginacct);
+
+    TMember selectTMemberByLoginacct(String loginacct);
 }

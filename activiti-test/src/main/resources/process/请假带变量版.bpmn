@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/testm1536567884519" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1536567884519" name="" targetNamespace="http://www.activiti.org/testm1536567884519" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <process id="myProcess001" isClosed="false" isExecutable="true" name="请假新版带变量" processType="None">
+    <startEvent id="_2" name="StartEvent"/>
+    <userTask activiti:assignee="${assigneer}" activiti:async="false" activiti:exclusive="true" id="usertask1" name="员工请假申请">
+      <extensionElements>
+        <activiti:formProperty id="days" name="请假天数" readable="true" required="true" type="long" writable="true"/>
+        <activiti:formProperty id="reasons" name="请假原因" readable="true" required="true" type="string" writable="true"/>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="_5" sourceRef="_2" targetRef="usertask1"/>
+    <exclusiveGateway gatewayDirection="Unspecified" id="_11" name="ExclusiveGateway"/>
+    <sequenceFlow id="_12" sourceRef="usertask1" targetRef="_11"/>
+    <userTask activiti:assignee="wangwu" activiti:exclusive="true" id="_13" name="组长审批">
+      <extensionElements>
+        <activiti:formProperty id="days" name="请假天数" readable="true" required="true" type="long" writable="true"/>
+        <activiti:formProperty id="reasons" name="请假原因" readable="true" required="true" type="string" writable="true"/>
+        <activiti:formProperty id="requester" name="请假人" readable="true" required="true" type="string" writable="true"/>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="_14" name="小于3天" sourceRef="_11" targetRef="_13">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days<3}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask activiti:assignee="zhaoliu" activiti:exclusive="true" id="_15" name="经理审批">
+      <extensionElements>
+        <activiti:formProperty id="days" name="请假天数" readable="true" required="true" type="long" writable="true"/>
+        <activiti:formProperty id="reasons" name="请假原因" readable="true" required="true" type="string" writable="true"/>
+        <activiti:formProperty id="requester" name="请假人" readable="true" required="true" type="string" writable="true"/>
+        <activiti:formProperty/>
+        <activiti:formProperty/>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="_16" name="大于等于3天" sourceRef="_11" targetRef="_15">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days>=3}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="_17" name="EndEvent"/>
+    <sequenceFlow id="_18" sourceRef="_13" targetRef="_17"/>
+    <sequenceFlow id="_19" sourceRef="_15" targetRef="_17"/>
+  </process>
+  <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="myProcess001">
+      <bpmndi:BPMNShape bpmnElement="_2" id="Shape-_2">
+        <dc:Bounds height="32.0" width="32.0" x="5.0" y="155.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="Shape-usertask1">
+        <dc:Bounds height="55.0" width="85.0" x="110.0" y="145.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" id="Shape-_11" isMarkerVisible="false">
+        <dc:Bounds height="32.0" width="32.0" x="295.0" y="150.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" id="Shape-_13">
+        <dc:Bounds height="55.0" width="85.0" x="420.0" y="85.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" id="Shape-_15">
+        <dc:Bounds height="55.0" width="85.0" x="415.0" y="240.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" id="Shape-_17">
+        <dc:Bounds height="32.0" width="32.0" x="590.0" y="170.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_12" id="BPMNEdge__12" sourceElement="usertask1" targetElement="_11">
+        <di:waypoint x="195.0" y="172.5"/>
+        <di:waypoint x="295.0" y="166.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14" id="BPMNEdge__14" sourceElement="_11" targetElement="_13">
+        <di:waypoint x="327.0" y="166.0"/>
+        <di:waypoint x="420.0" y="112.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="-14.0" width="1.0" x="0.0" y="24.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16" id="BPMNEdge__16" sourceElement="_11" targetElement="_15">
+        <di:waypoint x="327.0" y="166.0"/>
+        <di:waypoint x="415.0" y="267.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="38.0" width="0.0" x="0.0" y="-36.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19" id="BPMNEdge__19" sourceElement="_15" targetElement="_17">
+        <di:waypoint x="500.0" y="267.5"/>
+        <di:waypoint x="590.0" y="186.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18" id="BPMNEdge__18" sourceElement="_13" targetElement="_17">
+        <di:waypoint x="505.0" y="112.5"/>
+        <di:waypoint x="590.0" y="186.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5" id="BPMNEdge__5" sourceElement="_2" targetElement="usertask1">
+        <di:waypoint x="36.96871942267131" y="170.0"/>
+        <di:waypoint x="115.0" y="170.0"/>
+        <di:waypoint x="115.0" y="169.66666666666666"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

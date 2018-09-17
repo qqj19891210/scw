@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/activiti-test/activiti-test.iml" filepath="$PROJECT_DIR$/activiti-test/activiti-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/scw-manager/manager-dao/manager-dao.iml" filepath="$PROJECT_DIR$/scw-manager/manager-dao/manager-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/scw-manager/manager-pojo/manager-pojo.iml" filepath="$PROJECT_DIR$/scw-manager/manager-pojo/manager-pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/scw-manager/manager-service/manager-service.iml" filepath="$PROJECT_DIR$/scw-manager/manager-service/manager-service.iml" />
@@ -10,6 +11,8 @@
       <module fileurl="file://$PROJECT_DIR$/project-parent/project-parent.iml" filepath="$PROJECT_DIR$/project-parent/project-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/scw-manager/scw-manager.iml" filepath="$PROJECT_DIR$/scw-manager/scw-manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/scw-parent/scw-parent.iml" filepath="$PROJECT_DIR$/scw-parent/scw-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scw-portal/scw-portal.iml" filepath="$PROJECT_DIR$/scw-portal/scw-portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scw-restapi/scw-restapi.iml" filepath="$PROJECT_DIR$/scw-restapi/scw-restapi.iml" />
     </modules>
   </component>
 </project>

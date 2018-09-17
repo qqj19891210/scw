@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"
+          p:loginUrl="/permission/user/index"
+          p:securityManager-ref="securityManager">
+        <property name="filterChainDefinitions">
+            <value>
+
+            </value>
+        </property>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager"
+          p:realm-ref="customRealm"
+          p:sessionManager-ref="sessionManager"
+          p:rememberMeManager-ref="rememberManager"/>
+
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager"
+          p:globalSessionTimeout="600000"
+          p:deleteInvalidSessions="true"
+          p:sessionIdUrlRewritingEnabled="true"/>
+
+    <!--rememberManager管理器,写cookie,取出cookie生成用户信息-->
+    <bean id="rememberManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager"
+          p:cookie-ref="rememberCookie"/>
+
+    <!--记住我cookie,生效时间30天-->
+    <bean id="rememberCookie" class="org.apache.shiro.web.servlet.SimpleCookie"
+          p:maxAge="2592000">
+        <!--rememberMe是Cookie的名字-->
+        <constructor-arg value="rememberMe"/>
+    </bean>
+
+    <bean id="customRealm" class="com.smart.scw.restapi.realm.CustomRealm"
+          p:credentialsMatcher-ref="credentialsMatcher"/>
+
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher"
+          p:hashAlgorithmName="md5"
+          p:hashIterations="1"/>
+
+</beans>

@@ -24,20 +24,20 @@ ${pageContext.setAttribute("navinfo","分类管理")}
                             <thead>
                             <tr>
                                 <th>名称</th>
-                                <th>商业公司</th>
-                                <th>个体工商户</th>
-                                <th>个人经营</th>
-                                <th>政府及非营利组织</th>
+                                <c:forEach var="accountType" items="${accountTypes}">
+                                    <th>${accountType.name}</th>
+                                </c:forEach>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="cert" items="${certs}">
+                            <c:forEach var="cert" items="${certs}" varStatus="vs">
                                 <tr>
                                     <td>${cert.name}</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <c:forEach var="accountType" items="${accountTypes}" varStatus="vs2">
+                                        <td>
+                                            <input type="checkbox" ${relations[vs.index][vs2.index]==true?"checked":""}>
+                                        </td>
+                                    </c:forEach>
                                 </tr>
                             </c:forEach>
                             </tbody>

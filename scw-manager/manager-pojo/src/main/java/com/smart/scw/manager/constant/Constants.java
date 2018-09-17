@@ -7,4 +7,6 @@ public class Constants {
 
     public static final String USER_MENUS="userMenus";
 
+    public static final String LOGIN_MEMBER="loginMember";
+
 }

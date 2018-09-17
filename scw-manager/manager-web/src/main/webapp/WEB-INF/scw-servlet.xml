@@ -23,6 +23,8 @@
     <mvc:resources mapping="/script/**" location="/WEB-INF/static/script/" cache-period="31536000"/>
     <mvc:resources mapping="/ztree/**" location="/WEB-INF/static/ztree/" cache-period="31536000"/>
     <mvc:resources mapping="/jquery/**" location="/WEB-INF/static/jquery/" cache-period="31536000"/>
+    <mvc:resources mapping="/layer/**" location="/WEB-INF/static/layer/" cache-period="31536000"/>
+    <mvc:resources mapping="/advertisements/**" location="/advertisements/" cache-period="31536000"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/views/"
@@ -55,5 +57,8 @@
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
           p:basename="i18n/messages"/>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="UTF-8"
+          p:maxUploadSize="104857600"/>
 
 </beans>

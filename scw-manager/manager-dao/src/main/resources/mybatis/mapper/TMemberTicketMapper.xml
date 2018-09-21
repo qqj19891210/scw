@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.scw.manager.dao.TMemberTicketMapper">
+  <resultMap id="BaseResultMap" type="com.smart.scw.manager.bean.TMemberTicket">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="memberid" jdbcType="INTEGER" property="memberid" />
+    <result column="ticketid" jdbcType="VARCHAR" property="ticketid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_member_ticket
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.smart.scw.manager.bean.TMemberTicket">
+    insert into t_member_ticket (id, memberid, ticketid
+      )
+    values (#{id,jdbcType=INTEGER}, #{memberid,jdbcType=INTEGER}, #{ticketid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.smart.scw.manager.bean.TMemberTicket">
+    update t_member_ticket
+    set memberid = #{memberid,jdbcType=INTEGER},
+      ticketid = #{ticketid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, memberid, ticketid
+    from t_member_ticket
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, memberid, ticketid
+    from t_member_ticket
+  </select>
+
+  <select id="selectByMemberId" resultMap="BaseResultMap">
+    SELECT * FROM t_member_ticket WHERE memberid=#{memberid}
+  </select>
+
+</mapper>

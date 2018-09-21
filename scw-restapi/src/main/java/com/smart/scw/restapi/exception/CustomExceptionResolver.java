@@ -2,8 +2,7 @@ package com.smart.scw.restapi.exception;
 
 import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import com.smart.scw.restapi.bean.ScwReturn;
-import com.smart.scw.restapi.exception.CustomException.EmailIsExistException;
-import com.smart.scw.restapi.exception.CustomException.LoginacctIsExistException;
+import com.smart.scw.restapi.exception.CustomException.*;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Component;
@@ -34,8 +33,20 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
             errors.put("error", "账号错误");
         } else if (e instanceof IncorrectCredentialsException) {
             errors.put("error", "密码错误");
+        } else if (e instanceof GetDataFailExcepiton) {
+            errors.put("error", "获取账户类型信息失败");
+        } else if (e instanceof UpdateBaseInfoException) {
+            errors.put("error", e.getMessage());
+        } else if (e instanceof GetCertsFailException) {
+            errors.put("error", e.getMessage());
+        } else if (e instanceof UploadException) {
+            errors.put("error", e.getMessage());
+        } else if (e instanceof SendEmailException) {
+            errors.put("error", e.getMessage());
+        } else if (e instanceof ProcessApplyException) {
+            errors.put("error", e.getMessage());
         }
-        ScwReturn<Object> fail = ScwReturn.fail("用户注册失败", null, errors);
+        ScwReturn<Object> fail = ScwReturn.fail(e.getMessage(), null, errors);
         msg.put("msg", fail);
         view.setAttributesMap(msg);
         mv.setView(view);

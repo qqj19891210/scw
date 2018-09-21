@@ -2,12 +2,13 @@ package com.smart.scw.manager.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class TMember {
+import java.io.Serializable;
+
+public class TMember implements Serializable {
     private Integer id;
 
     private String loginacct;
 
-    //不返回这个字段
     @JSONField(serialize = false)
     private String userpswd;
 
@@ -23,10 +24,12 @@ public class TMember {
 
     private String cardnum;
 
-    private String accttype;
+    private Integer accttypeid;
 
     @JSONField(serialize = false)
     private String salt;
+
+    private String phonenum;
 
     public Integer getId() {
         return id;
@@ -100,12 +103,12 @@ public class TMember {
         this.cardnum = cardnum == null ? null : cardnum.trim();
     }
 
-    public String getAccttype() {
-        return accttype;
+    public Integer getAccttypeid() {
+        return accttypeid;
     }
 
-    public void setAccttype(String accttype) {
-        this.accttype = accttype == null ? null : accttype.trim();
+    public void setAccttypeid(Integer accttypeid) {
+        this.accttypeid = accttypeid;
     }
 
     public String getSalt() {
@@ -114,6 +117,14 @@ public class TMember {
 
     public void setSalt(String salt) {
         this.salt = salt == null ? null : salt.trim();
+    }
+
+    public String getPhonenum() {
+        return phonenum;
+    }
+
+    public void setPhonenum(String phonenum) {
+        this.phonenum = phonenum == null ? null : phonenum.trim();
     }
 
     @Override
@@ -128,8 +139,9 @@ public class TMember {
                 ", usertype='" + usertype + '\'' +
                 ", realname='" + realname + '\'' +
                 ", cardnum='" + cardnum + '\'' +
-                ", accttype='" + accttype + '\'' +
+                ", accttypeid=" + accttypeid +
                 ", salt='" + salt + '\'' +
+                ", phonenum='" + phonenum + '\'' +
                 '}';
     }
 

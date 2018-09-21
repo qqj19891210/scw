@@ -11,4 +11,13 @@
         SELECT * FROM t_cert
     </select>
 
+    <select id="selectCertByAccountTypeId" resultMap="certMap">
+        SELECT c.id,
+               c.name
+        FROM t_cert c
+        LEFT JOIN t_account_type_cert tatc
+        ON c.id = tatc.certid
+        WHERE tatc.accttypeid=#{atId}
+    </select>
+
 </mapper>

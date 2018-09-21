@@ -11,59 +11,77 @@
         <result column="usertype" jdbcType="CHAR" property="usertype"/>
         <result column="realname" jdbcType="VARCHAR" property="realname"/>
         <result column="cardnum" jdbcType="VARCHAR" property="cardnum"/>
-        <result column="accttype" jdbcType="CHAR" property="accttype"/>
+        <result column="accttypeid" jdbcType="INTEGER" property="accttypeid"/>
         <result column="salt" jdbcType="VARCHAR" property="salt"/>
+        <result column="phonenum" jdbcType="VARCHAR" property="phonenum"/>
     </resultMap>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_member
     where id = #{id,jdbcType=INTEGER}
-   </delete>
-    <insert id="insert" parameterType="com.smart.scw.manager.bean.TMember" useGeneratedKeys="true" keyProperty="id">
+  </delete>
+
+    <insert id="insert" parameterType="com.smart.scw.manager.bean.TMember">
     insert into t_member (id, loginacct, userpswd, 
       username, email, authstatus, 
       usertype, realname, cardnum, 
-      accttype, salt)
+      accttypeid, salt, phonenum
+      )
     values (#{id,jdbcType=INTEGER}, #{loginacct,jdbcType=VARCHAR}, #{userpswd,jdbcType=CHAR}, 
       #{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{authstatus,jdbcType=CHAR}, 
       #{usertype,jdbcType=CHAR}, #{realname,jdbcType=VARCHAR}, #{cardnum,jdbcType=VARCHAR}, 
-      #{accttype,jdbcType=CHAR}, #{salt,jdbcType=VARCHAR})
-   </insert>
+      #{accttypeid,jdbcType=INTEGER}, #{salt,jdbcType=VARCHAR}, #{phonenum,jdbcType=VARCHAR}
+      )
+  </insert>
+
     <update id="updateByPrimaryKey" parameterType="com.smart.scw.manager.bean.TMember">
     update t_member
-    set loginacct = #{loginacct,jdbcType=VARCHAR},
-      userpswd = #{userpswd,jdbcType=CHAR},
-      username = #{username,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      authstatus = #{authstatus,jdbcType=CHAR},
-      usertype = #{usertype,jdbcType=CHAR},
+    set
       realname = #{realname,jdbcType=VARCHAR},
       cardnum = #{cardnum,jdbcType=VARCHAR},
-      accttype = #{accttype,jdbcType=CHAR},
-      salt = #{salt,jdbcType=VARCHAR}
+      accttypeid = #{accttypeid,jdbcType=INTEGER},
+      phonenum = #{phonenum,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
    </update>
+
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, loginacct, userpswd, username, email, authstatus, usertype, realname, 
-    cardnum, accttype, salt
+    cardnum, accttypeid, salt, phonenum
     from t_member
     where id = #{id,jdbcType=INTEGER}
    </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
     select id, loginacct, userpswd, username, email, authstatus, usertype, realname, 
-    cardnum, accttype, salt
+    cardnum, accttypeid, salt, phonenum
     from t_member
+
    </select>
 
     <select id="selectByEmail" resultType="java.lang.Integer">
-        SELECT COUNT(1) FROM t_member WHERE email=#{email}
-    </select>
+    SELECT COUNT(1) FROM t_member WHERE email=#{email}
+  </select>
 
     <select id="selectByLoginacct" resultType="java.lang.Integer">
-        SELECT COUNT(1) FROM t_member WHERE  loginacct=#{loginacct}
-    </select>
+    SELECT COUNT(1) FROM t_member WHERE loginacct=#{loginacct}
+  </select>
 
     <select id="selectTMemberByLoginacct" resultMap="BaseResultMap">
         SELECT * FROM t_member WHERE loginacct=#{loginacct}
+    </select>
+
+    <update id="updateEmailByMemberId">
+        UPDATE t_member
+        SET
+        email=#{email}
+        WHERE id=#{id}
+    </update>
+
+    <select id="getMemberByTicket" resultMap="BaseResultMap">
+        SELECT m.* FROM t_member m
+        LEFT JOIN t_member_ticket tmt
+        ON m.id=tmt.memberid
+        WHERE tmt.ticketid=#{proId}
     </select>
 
 </mapper>

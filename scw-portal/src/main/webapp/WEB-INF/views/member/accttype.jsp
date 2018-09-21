@@ -15,39 +15,11 @@
         <h1>实名认证 - 账户类型选择</h1>
     </div>
     <div style="padding-top:10px;">
-        <div class="row">
-            <div class="col-xs-6 col-md-3">
+        <div class="row" id="showAccountType">
 
-                <h2>商业公司</h2>
-                <a href="#" class="thumbnail">
-
-                    <img alt="100%x180" src="<c:url value="/images/services-box1.jpg"/>" data-holder-rendered="true"
-                         style="height: 180px; width: 100%; display: block;">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <h2>个体工商户</h2>
-                <a href="#" class="thumbnail">
-                    <img alt="100%x180" src="<c:url value="/images/services-box2.jpg"/>" data-holder-rendered="true"
-                         style="height: 180px; width: 100%; display: block;">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <h2>个人经营</h2>
-                <a href="#" class="thumbnail">
-                    <img alt="100%x180" src="<c:url value="/images/services-box3.jpg"/>" data-holder-rendered="true"
-                         style="height: 180px; width: 100%; display: block;">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <h2>政府及非营利组织</h2>
-                <a href="#" class="thumbnail">
-                    <img alt="100%x180" src="<c:url value="/images/services-box4.jpg"/>" data-holder-rendered="true"
-                         style="height: 180px; width: 100%; display: block;">
-                </a>
-            </div>
         </div>
-        <button type="button" class="btn btn-danger btn-lg btn-block" onclick="window.location.href='apply.html'">认证申请
+        <button type="button" id="toAuthPage_btn" class="btn btn-danger btn-lg btn-block"
+                url="/scw-portal/auth/authPage">认证申请
         </button>
     </div>
 </div>
@@ -78,6 +50,7 @@
 <script type="text/javascript" src="<c:url value="/bootstrap/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/script/docs.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/jquery/jquery.session.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/layer/layer.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/accttype.js"/>"></script>
 </body>
 </html>

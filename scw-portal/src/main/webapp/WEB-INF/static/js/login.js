@@ -19,7 +19,9 @@ $(function () {
             cache: false,
             success: function (data) {
                 if (data.code == 1) {
+                    $.session.set("memberid",data.content.id);
                     $.session.set("loginacct",data.content.loginacct);
+                    $.session.set("email",data.content.email);
                     window.location.href = "/scw-portal/member/index";
                 } else {
                     if (data.ext.error == "密码错误") {

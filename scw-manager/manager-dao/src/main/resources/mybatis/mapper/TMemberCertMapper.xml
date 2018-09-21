@@ -33,4 +33,29 @@
     select id, memberid, certid, iconpath
     from t_member_cert
   </select>
+
+  <insert id="insertMemberCert">
+    INSERT INTO t_member_cert(
+      memberid,certid,iconpath
+    )
+    VALUES
+    <foreach collection="memberCerts" item="memberCert" separator=",">
+      (
+        #{memberCert.memberid},#{memberCert.certid},#{memberCert.iconpath}
+      )
+    </foreach>
+  </insert>
+
+  <delete id="deleteMemberCertByMemberId">
+    DELETE FROM t_member_cert
+    WHERE memberid=#{memberid}
+  </delete>
+
+  <select id="getCertsByTicket" resultMap="BaseResultMap">
+    SELECT tmc.* FROM t_member_cert tmc
+    LEFT JOIN t_member_ticket tmt
+    ON tmc.memberid=tmt.memberid
+    WHERE tmt.ticketid=#{proId}
+  </select>
+
 </mapper>

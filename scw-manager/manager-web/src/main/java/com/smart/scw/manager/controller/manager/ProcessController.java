@@ -101,7 +101,7 @@ public class ProcessController {
     public FastJsonJsonView upload(@RequestParam("processFile") MultipartFile file) throws DeployFailException {
         FastJsonJsonView fastJsonJsonView = new FastJsonJsonView();
         Map<String, Object> result = new HashMap<>();
-        if(!file.getOriginalFilename().endsWith(".bpmn")){
+        if (!file.getOriginalFilename().endsWith(".bpmn")) {
             throw new DeployFailException("上传文件不符合格式");
         }
         //部署流程

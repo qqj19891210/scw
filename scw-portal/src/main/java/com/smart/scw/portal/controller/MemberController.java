@@ -4,13 +4,16 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.smart.project.HttpClientUtil;
 import com.smart.scw.manager.bean.TMember;
+import com.smart.scw.manager.constant.Constants;
+import com.smart.scw.portal.bean.RestApiServer;
 import com.smart.scw.portal.bean.ScwReturn;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,15 +25,8 @@ import java.util.Map;
 @RequestMapping("/member")
 public class MemberController {
 
-    @Value("${restapi.server.ip}")
-    private String restapiServer;
-
-    @Value("${restapi.server.port}")
-    private String restapiPort;
-
-    private String getRestApiURL() {
-        return "http://" + restapiServer + ":" + restapiPort;
-    }
+    @Autowired
+    private RestApiServer server;
 
     @RequestMapping("/regist")
     public String regist() {
@@ -65,7 +61,7 @@ public class MemberController {
         //httpclient使用java代码来模拟发送请求
         //能收到api调用后产生的json数据
         //应该发送请求进行注册:java代码发送请求
-        String url = getRestApiURL() + "/scw-restapi/member/regist";
+        String url = server.getRestApiURL() + "/scw-restapi/member/regist";
         //构建请求参数
         Map<String, Object> params = new HashMap<>();
         params.put("loginacct", member.getLoginacct());
@@ -89,7 +85,7 @@ public class MemberController {
     @RequestMapping("/isLoginacctExist")
     @ResponseBody
     public String isLoginacctExist(@RequestBody String loginacct) throws UnsupportedEncodingException {
-        String url = getRestApiURL() + "/scw-restapi/member/isLoginacctExist";
+        String url = server.getRestApiURL() + "/scw-restapi/member/isLoginacctExist";
         Map<String, Object> params = new HashMap<>();
         params.put("loginacct", loginacct);
         String response = HttpClientUtil.httpPostRequest(url, params);
@@ -105,7 +101,7 @@ public class MemberController {
     @RequestMapping("/isEmailExist")
     @ResponseBody
     public String isEmailExist(@RequestBody String email) throws UnsupportedEncodingException {
-        String url = getRestApiURL() + "/scw-restapi/member/isEmailExist";
+        String url = server.getRestApiURL() + "/scw-restapi/member/isEmailExist";
         Map<String, Object> params = new HashMap<>();
         params.put("email", email);
         String response = HttpClientUtil.httpPostRequest(url, params);
@@ -120,14 +116,16 @@ public class MemberController {
 
     @RequestMapping("/loginCheck")
     @ResponseBody
-    public ScwReturn<TMember> loginCheck(@RequestBody TMember member) throws UnsupportedEncodingException {
+    public ScwReturn<TMember> loginCheck(@RequestBody TMember member, HttpSession session) throws UnsupportedEncodingException {
         Map<String, Object> params = new HashMap<>();
         params.put("loginacct", member.getLoginacct());
         params.put("userpswd", member.getUserpswd());
-        String response = HttpClientUtil.httpPostRequest(getRestApiURL() + "/scw-restapi/member/login", params);
+        String response = HttpClientUtil.httpPostRequest(server.getRestApiURL() + "/scw-restapi/member/login", params);
         JSONObject jsonObject = JSON.parseObject(response);
         Object msg = jsonObject.get("msg");
         ScwReturn<TMember> scwReturn = JSON.parseObject(String.valueOf(msg), ScwReturn.class);
+        member=JSON.parseObject(String.valueOf(scwReturn.getContent()),TMember.class);
+        session.setAttribute(Constants.LOGIN_MEMBER,member);
         return scwReturn;
     }
 

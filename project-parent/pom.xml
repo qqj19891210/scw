@@ -60,8 +60,8 @@
         <shiro.version>1.4.0</shiro.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <activiti.version>6.0.0</activiti.version>
-        <activiti-spring.version>6.0.0</activiti-spring.version>
+        <activiti.version>5.22.0</activiti.version>
+        <activiti-spring.version>5.22.0</activiti-spring.version>
         <cglib.version>3.2.7</cglib.version>
         <jackson.verison>2.9.6</jackson.verison>
     </properties>

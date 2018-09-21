@@ -6,6 +6,7 @@ public interface MemberService {
 
     /**
      * 会员注册,返回注册好的用户
+     *
      * @param tMember
      * @return
      */
@@ -17,5 +18,11 @@ public interface MemberService {
 
     TMember findTMemberByLoginacct(String loginacct);
 
-    public boolean isAuthenticated(TMember member);
+    boolean isAuthenticated(TMember member);
+
+    boolean updateBaseInfo(TMember member);
+
+    boolean saveEmail(TMember member);
+
+    void sendEmail(String email,String username,Integer memberid);
 }

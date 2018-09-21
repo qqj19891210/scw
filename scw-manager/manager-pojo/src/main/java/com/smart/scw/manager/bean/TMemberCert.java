@@ -40,4 +40,15 @@ public class TMemberCert {
     public void setIconpath(String iconpath) {
         this.iconpath = iconpath == null ? null : iconpath.trim();
     }
+
+    @Override
+    public String toString() {
+        return "TMemberCert{" +
+                "id=" + id +
+                ", memberid=" + memberid +
+                ", certid=" + certid +
+                ", iconpath='" + iconpath + '\'' +
+                '}';
+    }
+
 }

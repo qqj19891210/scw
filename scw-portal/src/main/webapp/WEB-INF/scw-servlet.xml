@@ -11,9 +11,11 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-    <context:property-placeholder location="classpath:otherConfig/app.properties" ignore-unresolvable="true" />
+    <context:property-placeholder location="classpath:otherConfig/app.properties" ignore-unresolvable="true"/>
 
     <context:component-scan base-package="com.smart.scw.portal.controller"/>
+
+    <context:component-scan base-package="com.smart.scw.portal.bean" />
 
     <mvc:resources mapping="/bootstrap/**" location="/WEB-INF/static/bootstrap/" cache-period="31536000"/>
     <mvc:resources mapping="/js/**" location="/WEB-INF/static/js/" cache-period="31536000"/>
@@ -23,6 +25,7 @@
     <mvc:resources mapping="/script/**" location="/WEB-INF/static/script/" cache-period="31536000"/>
     <mvc:resources mapping="/ztree/**" location="/WEB-INF/static/ztree/" cache-period="31536000"/>
     <mvc:resources mapping="/jquery/**" location="/WEB-INF/static/jquery/" cache-period="31536000"/>
+    <mvc:resources mapping="/layer/**" location="/WEB-INF/static/layer/" cache-period="31536000"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/views/"

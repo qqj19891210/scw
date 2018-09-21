@@ -41,5 +41,14 @@
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
           p:basename="i18n/messages"/>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="UTF-8"
+          p:maxUploadSize="104857600"/>
+
+    <!--在springmvc配置文件中指定跨域-->
+    <mvc:cors>
+        <!--所有请求都允许跨域-->
+        <mvc:mapping path="/**"/>
+    </mvc:cors>
 
 </beans>
